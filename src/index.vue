@@ -19,31 +19,41 @@
         mounted: function () {
             let ref = this.$refs.canvas_holder;
             if (isWeex) {
-                ref = enable(ref, {bridge: WeexBridge});
+                ref = enable(ref, { bridge: WeexBridge });
             }
-            
             var ctx = ref.getContext('2d');
+            var size = {
+                width: 750,
+                height: 750
+            };
+            function draw() {
+                const offsetX = ((Date.now() / 3000) % 1) * size.width * 0.8;
 
-			//rect
-			ctx.fillStyle = 'red';
-			ctx.fillRect(0, 0, 100, 100);
+                ctx.save();
 
-			//rect
-			ctx.fillStyle = 'black';
-			ctx.fillRect(100, 100, 100, 100);
-			ctx.fillRect(25, 210, 700, 5);
+                ctx.translate(10, 50);
 
-			//circle
-			ctx.arc(450, 200, 100, 0, Math.PI * 2, true);
-			ctx.fill();
+                ctx.clearRect(0, 0, size.width, size.height);
+                ctx.fillStyle = "blue";
+                ctx.fillRect(offsetX, 0, size.width * 0.2, size.height * 0.2);
 
-			//drawImage
-			var image = new EnvImage();
-			image.onload = function(){
-				ctx.drawImage(image, 100, 330);
-				ctx.drawImage(image, 100+300, 330, 225, 75);
-			}
-			image.src = 'https://gw.alicdn.com/tfs/TB1KwRTlh6I8KJjy0FgXXXXzVXa-225-75.png';
-		}
-	};
+                ctx.fillStyle = "red";
+
+                ctx.beginPath();
+                ctx.arc(
+                    size.width * 0.1 + offsetX,
+                    size.height * 0.5,
+                    size.height * 0.1,
+                    0,
+                    Math.PI * 2,
+                    true
+                );
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.restore();
+            }
+            setInterval(draw, 16);
+        }
+    };
 </script>

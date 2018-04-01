@@ -1620,7 +1620,7 @@ new Vue(module.exports)
 
 
 Object.defineProperty(exports, "__esModule", {
-				value: true
+    value: true
 });
 //
 //
@@ -1640,41 +1640,44 @@ var _require = __webpack_require__(8),
 var EnvImage = !isWeex ? Image : GImage;
 
 exports.default = {
-				data: function data() {
-								return {
-												isWeex: isWeex ? 1 : 0
-								};
-				},
+    data: function data() {
+        return {
+            isWeex: isWeex ? 1 : 0
+        };
+    },
 
-				mounted: function mounted() {
-								var ref = this.$refs.canvas_holder;
-								if (isWeex) {
-												ref = enable(ref, { bridge: WeexBridge });
-								}
+    mounted: function mounted() {
+        var ref = this.$refs.canvas_holder;
+        if (isWeex) {
+            ref = enable(ref, { bridge: WeexBridge });
+        }
+        var ctx = ref.getContext('2d');
+        var size = {
+            width: 750,
+            height: 750
+        };
+        function draw() {
+            var offsetX = Date.now() / 3000 % 1 * size.width * 0.8;
 
-								var ctx = ref.getContext('2d');
+            ctx.save();
 
-								//rect
-								ctx.fillStyle = 'red';
-								ctx.fillRect(0, 0, 100, 100);
+            ctx.translate(10, 50);
 
-								//rect
-								ctx.fillStyle = 'black';
-								ctx.fillRect(100, 100, 100, 100);
-								ctx.fillRect(25, 210, 700, 5);
+            ctx.clearRect(0, 0, size.width, size.height);
+            ctx.fillStyle = "blue";
+            ctx.fillRect(offsetX, 0, size.width * 0.2, size.height * 0.2);
 
-								//circle
-								ctx.arc(450, 200, 100, 0, Math.PI * 2, true);
-								ctx.fill();
+            ctx.fillStyle = "red";
 
-								//drawImage
-								var image = new EnvImage();
-								image.onload = function () {
-												ctx.drawImage(image, 100, 330);
-												ctx.drawImage(image, 100 + 300, 330, 225, 75);
-								};
-								image.src = 'https://gw.alicdn.com/tfs/TB1KwRTlh6I8KJjy0FgXXXXzVXa-225-75.png';
-				}
+            ctx.beginPath();
+            ctx.arc(size.width * 0.1 + offsetX, size.height * 0.5, size.height * 0.1, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.restore();
+        }
+        setInterval(draw, 16);
+    }
 };
 
 /***/ }),
