@@ -9,6 +9,8 @@ import com.weex.app.util.AppConfig;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 import com.taobao.weex.common.WXException;
+import com.taobao.gcanvas.bridges.weex.GCanvasWeexModule;
+import com.taobao.gcanvas.bridges.weex.WXGCanvasWeexComponent;
 
 public class WXApplication extends Application {
 
