@@ -93,15 +93,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _FillStylePattern = __webpack_require__(10);
+var _FillStylePattern = __webpack_require__(11);
 
 var _FillStylePattern2 = _interopRequireDefault(_FillStylePattern);
 
-var _FillStyleLinearGradient = __webpack_require__(11);
+var _FillStyleLinearGradient = __webpack_require__(12);
 
 var _FillStyleLinearGradient2 = _interopRequireDefault(_FillStyleLinearGradient);
 
-var _FillStyleRadialGradient = __webpack_require__(12);
+var _FillStyleRadialGradient = __webpack_require__(13);
 
 var _FillStyleRadialGradient2 = _interopRequireDefault(_FillStyleRadialGradient);
 
@@ -585,43 +585,43 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _GLenum = __webpack_require__(13);
+var _GLenum = __webpack_require__(14);
 
 var _GLenum2 = _interopRequireDefault(_GLenum);
 
-var _ActiveInfo = __webpack_require__(14);
+var _ActiveInfo = __webpack_require__(15);
 
 var _ActiveInfo2 = _interopRequireDefault(_ActiveInfo);
 
-var _Buffer = __webpack_require__(15);
+var _Buffer = __webpack_require__(16);
 
 var _Buffer2 = _interopRequireDefault(_Buffer);
 
-var _Framebuffer = __webpack_require__(16);
+var _Framebuffer = __webpack_require__(17);
 
 var _Framebuffer2 = _interopRequireDefault(_Framebuffer);
 
-var _Renderbuffer = __webpack_require__(17);
+var _Renderbuffer = __webpack_require__(18);
 
 var _Renderbuffer2 = _interopRequireDefault(_Renderbuffer);
 
-var _Texture = __webpack_require__(18);
+var _Texture = __webpack_require__(19);
 
 var _Texture2 = _interopRequireDefault(_Texture);
 
-var _Program = __webpack_require__(19);
+var _Program = __webpack_require__(20);
 
 var _Program2 = _interopRequireDefault(_Program);
 
-var _Shader = __webpack_require__(20);
+var _Shader = __webpack_require__(21);
 
 var _Shader2 = _interopRequireDefault(_Shader);
 
-var _ShaderPrecisionFormat = __webpack_require__(21);
+var _ShaderPrecisionFormat = __webpack_require__(22);
 
 var _ShaderPrecisionFormat2 = _interopRequireDefault(_ShaderPrecisionFormat);
 
-var _UniformLocation = __webpack_require__(22);
+var _UniformLocation = __webpack_require__(23);
 
 var _UniformLocation2 = _interopRequireDefault(_UniformLocation);
 
@@ -1582,7 +1582,7 @@ var __vue_styles__ = []
 __vue_exports__ = __webpack_require__(7)
 
 /* template */
-var __vue_template__ = __webpack_require__(26)
+var __vue_template__ = __webpack_require__(27)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1594,7 +1594,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "/Users/huweijie/Documents/gcanvas_demo/src/index.vue"
+__vue_options__.__file = "/home/oppo/source/reed_gcanvas/src/index.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__.style = __vue_options__.style || {}
@@ -1632,7 +1632,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var isWeex = weex.config.env.platform !== 'Web';
 
-var _require = __webpack_require__(8),
+var _require = __webpack_require__(9),
     enable = _require.enable,
     WeexBridge = _require.WeexBridge,
     GImage = _require.Image;
@@ -1681,7 +1681,8 @@ exports.default = {
 };
 
 /***/ }),
-/* 8 */
+/* 8 */,
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1693,11 +1694,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.ReactNativeBridge = exports.WeexBridge = exports.Image = undefined;
 exports.enable = enable;
 
-var _canvas = __webpack_require__(9);
+var _canvas = __webpack_require__(10);
 
 var _canvas2 = _interopRequireDefault(_canvas);
 
-var _image = __webpack_require__(23);
+var _image = __webpack_require__(24);
 
 var _image2 = _interopRequireDefault(_image);
 
@@ -1709,11 +1710,11 @@ var _RenderingContext3 = __webpack_require__(1);
 
 var _RenderingContext4 = _interopRequireDefault(_RenderingContext3);
 
-var _bridgeWeex = __webpack_require__(24);
+var _bridgeWeex = __webpack_require__(25);
 
 var _bridgeWeex2 = _interopRequireDefault(_bridgeWeex);
 
-var _bridgeReactnative = __webpack_require__(25);
+var _bridgeReactnative = __webpack_require__(26);
 
 var _bridgeReactnative2 = _interopRequireDefault(_bridgeReactnative);
 
@@ -1757,7 +1758,7 @@ function enable(el) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1858,7 +1859,7 @@ var GCanvas = function () {
 exports.default = GCanvas;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1880,7 +1881,7 @@ var FillStylePattern = function FillStylePattern(img, pattern) {
 exports.default = FillStylePattern;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1911,7 +1912,7 @@ var FillStyleLinearGradient = function FillStyleLinearGradient(x0, y0, x1, y1) {
 exports.default = FillStyleLinearGradient;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1951,7 +1952,7 @@ var FillStyleRadialGradient = function () {
 exports.default = FillStyleRadialGradient;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2260,7 +2261,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2289,7 +2290,7 @@ var WebGLActiveInfo = function WebGLActiveInfo(_ref) {
 exports.default = WebGLActiveInfo;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2334,7 +2335,7 @@ WebGLBuffer.uuid = _uuid;
 exports.default = WebGLBuffer;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2379,7 +2380,7 @@ WebGLFramebuffer.uuid = _uuid;
 exports.default = WebGLFramebuffer;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2424,7 +2425,7 @@ WebGLRenderbuffer.uuid = _uuid;
 exports.default = WebGLRenderbuffer;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2470,7 +2471,7 @@ WebGLTexture.uuid = _uuid;
 exports.default = WebGLTexture;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2515,7 +2516,7 @@ WebGLProgram.uuid = _uuid;
 exports.default = WebGLProgram;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2561,7 +2562,7 @@ WebGLShader.uuid = _uuid;
 exports.default = WebGLShader;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2590,7 +2591,7 @@ var WebGLShaderPrecisionFormat = function WebGLShaderPrecisionFormat(_ref) {
 exports.default = WebGLShaderPrecisionFormat;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2636,7 +2637,7 @@ WebGLUniformLocation.uuid = _uuid;
 exports.default = WebGLUniformLocation;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2754,7 +2755,7 @@ var GImage = function () {
 exports.default = GImage;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3010,7 +3011,7 @@ var GBridge = {
 exports.default = GBridge;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3166,7 +3167,7 @@ var GBridge = {
 exports.default = GBridge;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
