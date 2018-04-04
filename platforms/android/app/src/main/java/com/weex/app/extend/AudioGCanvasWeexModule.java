@@ -30,4 +30,5 @@ public class AudioGCanvasWeexModule extends GCanvasWeexModule {
             }
 
         }
+    }
 }

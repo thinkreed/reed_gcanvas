@@ -1,5 +1,13 @@
 {
   "ios": [],
   "web": [],
-  "android": []
+  "android": [
+    {
+      "type": "maven",
+      "groupId": "com.instapp.nat",
+      "name": "weex-plugin-media-audio",
+      "version": "1.0.0-alpha",
+      "dependency": "com.instapp.nat:weex-plugin-media-audio:1.0.0-alpha"
+    }
+  ]
 }

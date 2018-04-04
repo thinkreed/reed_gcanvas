@@ -1,81 +1,39 @@
 <template>
-    <div>
-    <gcanvas v-if="isWeex" ref="canvas_holder" 
-        @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" 
-        style="width:750;height:750;"></gcanvas>
-    <canvas v-if="!isWeex" ref="canvas_holder"
-        @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd"
-        style="width:750px;height:750px;"></canvas>
-    </div>
+  <div>
+    <gcanvas v-if="isWeex" ref="canvas_holder" style="top: 0;position:absolute;flex:1"></gcanvas>
+    <canvas v-if="!isWeex" ref="canvas_holder" style="width:750px;height:1000px;"></canvas>
+  </div>
 </template>
-
-
 <script>
-const isWeex = typeof callNative === "function";
-
-const enable = require('../gf/index.js').enable;
-const GImage = require('../gf/index.js').Image;
-const WeexBridge = require('../gf/index.js').WeexBridge;
-
-import G3D from "g3d";
-G3D.Env.Image = isWeex ? GImage : Image;
-G3D.Env.manuallyFlipY = isWeex;
-G3D.Env.framebufferNotReady = isWeex;
-
-import {
-  touchStart,
-  touchMove,
-  touchEnd,
-  controlArcRotateCamera
-} from "./weex/lib/attach-control";
-
-import main from "./pages/raw-material-main.js";
-
-function start(ref, size) {
-  if (isWeex) {
-    ref.width = size.width;
-    ref.height = size.height;
-  }
-
-  main(G3D, {
-    canvas: ref,
-    requestAnimationFrame: setTimeout,
-    controlArcRotateCamera
-  });
-}
+const isWeex = weex.config.env.platform !== 'Web'
+const {
+  enable,
+  WeexBridge,
+  Image: GImage
+} = require('../gf/index.js')
+const EnvImage = !isWeex ? Image : GImage
 
 export default {
   data() {
     return {
-      isWeex: isWeex,
-      touchStart,
-      touchMove,
-      touchEnd
-    };
+      isWeex: isWeex ? 1 : 0
+    }
   },
-
-  mounted: function() {
-    var ref = this.$refs.canvas_holder;
-
-    var size = isWeex
-      ? {
-          width: 750,
-          height: 750
-        }
-      : {
-          width: parseInt(ref.style.width),
-          height: parseInt(ref.style.height)
-        };
-    if (!isWeex) {
-      ref.width = size.width;
-      ref.height = size.height;
-    }
-
+  mounted: function () {
+    let ref = this.$refs.canvas_holder
     if (isWeex) {
-      ref = enable(ref, { debug: true, bridge: WeexBridge });
+      ref = enable(ref, {
+        bridge: WeexBridge
+      })
     }
+    var ctx = ref.getContext('2d')
+    var bg = new EnvImage()
+    bg.resize = 'stretch'
+    bg.onload = function () {
+      ctx.drawImage(bg, 0, 0)
+    }
+    bg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-xy4M1xzlY4abBHhX6uOAEntcJmsmhRD30CbBqY2Cqtt_g6M9oQ'
 
-    start(ref, size);
   }
-};
+}
 </script>

@@ -3,7 +3,6 @@ package com.weex.app;
 import android.app.Application;
 
 import com.taobao.gcanvas.adapters.img.impl.fresco.GCanvasFrescoImageLoader;
-import com.weex.app.extend.AudioGCanvasWeexModule;
 import com.weex.app.extend.FrescoImageAdapter;
 import com.weex.app.extend.WXEventModule;
 import com.alibaba.weex.plugin.loader.WeexPluginContainer;
@@ -26,7 +25,7 @@ public class WXApplication extends Application {
     );
     try {
       WXSDKEngine.registerModule("event", WXEventModule.class);
-      WXSDKEngine.registerModule("gcanvas", AudioGCanvasWeexModule.class);
+      WXSDKEngine.registerModule("gcanvas", GCanvasWeexModule.class);
       WXSDKEngine.registerComponent("gcanvas", WXGCanvasWeexComponent.class);
     } catch (WXException e) {
       e.printStackTrace();
