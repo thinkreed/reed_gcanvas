@@ -62,7 +62,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ 	return __webpack_require__(__webpack_require__.s = 46);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3077,17 +3077,23 @@ exports.default = GBridge;
 /* 41 */,
 /* 42 */,
 /* 43 */,
-/* 44 */
+/* 44 */,
+/* 45 */,
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
+/* styles */
+__vue_styles__.push(__webpack_require__(47)
+)
+
 /* script */
-__vue_exports__ = __webpack_require__(45)
+__vue_exports__ = __webpack_require__(48)
 
 /* template */
-var __vue_template__ = __webpack_require__(46)
+var __vue_template__ = __webpack_require__(49)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -3099,9 +3105,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "/home/oppo/source/reed_gcanvas/src/index.vue"
+__vue_options__.__file = "/Users/huweijie/Documents/gcanvas_demo/src/index.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-20f52981"
 __vue_options__.style = __vue_options__.style || {}
 __vue_styles__.forEach(function (module) {
   for (var name in module) {
@@ -3118,7 +3125,13 @@ new Vue(module.exports)
 
 
 /***/ }),
-/* 45 */
+/* 47 */
+/***/ (function(module, exports) {
+
+module.exports = {}
+
+/***/ }),
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3127,6 +3140,8 @@ new Vue(module.exports)
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+//
+//
 //
 //
 //
@@ -3142,6 +3157,11 @@ var _require = __webpack_require__(1),
     GImage = _require.Image;
 
 var EnvImage = !isWeex ? Image : GImage;
+var modal = weex.requireModule('modal');
+var lastX = 0;
+var lastY = 0;
+var dx = 0;
+var dy = 0;
 
 exports.default = {
   data: function data() {
@@ -3150,7 +3170,22 @@ exports.default = {
     };
   },
 
+  methods: {
+    touchMove: function touchMove(e) {
+      dx = e.changedTouches[0].screenX - lastX + dx;
+      dy = e.changedTouches[0].screenY - lastY + dy;
+    },
+    touchStart: function touchStart(e) {
+      lastX = e.changedTouches[0].screenX;
+      lastY = e.changedTouches[0].screenY;
+    },
+    touchEnd: function touchEnd(e) {
+      lastX = 0;
+      lastY = 0;
+    }
+  },
   mounted: function mounted() {
+    // init
     var ref = this.$refs.canvas_holder;
     if (isWeex) {
       ref = enable(ref, {
@@ -3158,26 +3193,123 @@ exports.default = {
       });
     }
     var ctx = ref.getContext('2d');
-    var bg = new EnvImage();
-    bg.resize = 'stretch';
-    bg.onload = function () {
-      ctx.drawImage(bg, 0, 0);
+
+    // Background image
+    var bgReady = false;
+    var bgImage = new EnvImage();
+    bgImage.onload = function () {
+      bgReady = true;
     };
-    bg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-xy4M1xzlY4abBHhX6uOAEntcJmsmhRD30CbBqY2Cqtt_g6M9oQ';
+    bgImage.src = "file:///sdcard/Documents/img/background.png";
+
+    // Hero image
+    var heroReady = false;
+    var heroImage = new EnvImage();
+    heroImage.onload = function () {
+      heroReady = true;
+    };
+    heroImage.src = "file:///sdcard/Documents/img/hero.png";
+
+    // Monster image
+    var monsterReady = false;
+    var monsterImage = new EnvImage();
+    monsterImage.onload = function () {
+      monsterReady = true;
+    };
+    monsterImage.src = "file:///sdcard/Documents/img/monster.png";
+
+    // Game objects
+    var hero = {
+      speed: 20 // movement in pixels per second
+    };
+    var monster = {};
+    var monstersCaught = 0;
+
+    // Reset the game when the player catches a monster
+    var reset = function reset() {
+      lastX = 0;
+      lastY = 0;
+      dx = 0;
+      dy = 0;
+      hero.x = ref.width / 2;
+      hero.y = ref.height / 2;
+
+      // Throw the monster somewhere on the screen randomly
+      monster.x = 32 + Math.random() * (ref.width - 64);
+      monster.y = 32 + Math.random() * (ref.height - 64);
+    };
+
+    // Update game objects
+    var update = function update(modifier) {
+      hero.x += dx / hero.speed * modifier;
+      hero.y += dy / hero.speed * modifier;
+      dx = 0;
+      dy = 0;
+
+      // Are they touching?
+      if (hero.x <= monster.x + 32 && monster.x <= hero.x + 32 && hero.y <= monster.y + 32 && monster.y <= hero.y + 32) {
+        ++monstersCaught;
+        reset();
+      }
+    };
+
+    // Draw everything
+    var render = function render() {
+
+      ctx.clearRect(0, 0, 750, 750);
+
+      if (bgReady) {
+        ctx.drawImage(bgImage, 0, 0, 750, 750);
+      }
+
+      if (heroReady) {
+        ctx.drawImage(heroImage, hero.x, hero.y);
+      }
+
+      if (monsterReady) {
+        ctx.drawImage(monsterImage, monster.x, monster.y);
+      }
+
+      // Score
+      ctx.fillStyle = "rgb(250, 250, 250)";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "top";
+      ctx.fillText("Goblins caught: " + monstersCaught, 32, 32);
+    };
+
+    // The main game loop
+    var main = function main() {
+      var now = new Date().getTime();
+      var delta = now - then;
+
+      update(delta / 1000);
+      render();
+
+      then = now;
+    };
+
+    // Let's play this game!
+    var then = new Date().getTime();
+    reset();
+    setInterval(main, 16);
   }
 };
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [(_vm.isWeex) ? _c('gcanvas', {
     ref: "canvas_holder",
+    staticClass: ["canvas"],
     staticStyle: {
-      top: "0",
-      position: "absolute",
-      flex: "1"
+      width: "750",
+      height: "750"
+    },
+    on: {
+      "touchstart": _vm.touchStart,
+      "touchmove": _vm.touchMove
     }
   }) : _vm._e(), (!_vm.isWeex) ? _c('canvas', {
     ref: "canvas_holder",

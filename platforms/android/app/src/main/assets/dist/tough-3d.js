@@ -62,7 +62,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 51);
+/******/ 	return __webpack_require__(__webpack_require__.s = 54);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3055,8 +3055,7 @@ var GBridge = {
 exports.default = GBridge;
 
 /***/ }),
-/* 22 */,
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5741,10 +5740,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         s = (t.RANDOM = Math.random, Math.PI / 180);
   }]);
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)(module)))
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5774,167 +5773,8 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* script */
-__vue_exports__ = __webpack_require__(52)
-
-/* template */
-var __vue_template__ = __webpack_require__(55)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "/home/oppo/source/reed_gcanvas/src/tough-3d.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-module.exports.el = 'true'
-new Vue(module.exports)
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _g3d = __webpack_require__(23);
-
-var _g3d2 = _interopRequireDefault(_g3d);
-
-var _attachControl = __webpack_require__(53);
-
-var _rawMaterialMain = __webpack_require__(54);
-
-var _rawMaterialMain2 = _interopRequireDefault(_rawMaterialMain);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var isWeex = typeof callNative === "function";
-
-var enable = __webpack_require__(1).enable;
-var GImage = __webpack_require__(1).Image;
-var WeexBridge = __webpack_require__(1).WeexBridge;
-
-_g3d2.default.Env.Image = isWeex ? GImage : Image;
-_g3d2.default.Env.manuallyFlipY = isWeex;
-_g3d2.default.Env.framebufferNotReady = isWeex;
-
-function start(ref, size) {
-  if (isWeex) {
-    ref.width = size.width;
-    ref.height = size.height;
-  }
-
-  (0, _rawMaterialMain2.default)(_g3d2.default, {
-    canvas: ref,
-    requestAnimationFrame: setTimeout,
-    controlArcRotateCamera: _attachControl.controlArcRotateCamera
-  });
-}
-
-exports.default = {
-  data: function data() {
-    return {
-      isWeex: isWeex,
-      touchStart: _attachControl.touchStart,
-      touchMove: _attachControl.touchMove,
-      touchEnd: _attachControl.touchEnd
-    };
-  },
-
-
-  mounted: function mounted() {
-    var ref = this.$refs.canvas_holder;
-
-    var size = isWeex ? {
-      width: 750,
-      height: 750
-    } : {
-      width: parseInt(ref.style.width),
-      height: parseInt(ref.style.height)
-    };
-    if (!isWeex) {
-      ref.width = size.width;
-      ref.height = size.height;
-    }
-
-    if (isWeex) {
-      ref = enable(ref, { debug: true, bridge: WeexBridge });
-    }
-
-    start(ref, size);
-  }
-};
-
-/***/ }),
-/* 53 */
+/* 24 */,
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6005,7 +5845,7 @@ exports.touchMove = touchMove;
 exports.touchEnd = touchEnd;
 
 /***/ }),
-/* 54 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6085,7 +5925,168 @@ function main(G3D, _ref) {
 exports.default = main;
 
 /***/ }),
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = []
+
+/* script */
+__vue_exports__ = __webpack_require__(55)
+
+/* template */
+var __vue_template__ = __webpack_require__(56)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "/Users/huweijie/Documents/gcanvas_demo/src/tough-3d.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__.style = __vue_options__.style || {}
+__vue_styles__.forEach(function (module) {
+  for (var name in module) {
+    __vue_options__.style[name] = module[name]
+  }
+})
+if (typeof __register_static_styles__ === "function") {
+  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
+}
+
+module.exports = __vue_exports__
+module.exports.el = 'true'
+new Vue(module.exports)
+
+
+/***/ }),
 /* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _g3d = __webpack_require__(22);
+
+var _g3d2 = _interopRequireDefault(_g3d);
+
+var _attachControl = __webpack_require__(25);
+
+var _rawMaterialMain = __webpack_require__(26);
+
+var _rawMaterialMain2 = _interopRequireDefault(_rawMaterialMain);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var isWeex = typeof callNative === "function";
+
+var enable = __webpack_require__(1).enable;
+var GImage = __webpack_require__(1).Image;
+var WeexBridge = __webpack_require__(1).WeexBridge;
+
+_g3d2.default.Env.Image = isWeex ? GImage : Image;
+_g3d2.default.Env.manuallyFlipY = isWeex;
+_g3d2.default.Env.framebufferNotReady = isWeex;
+
+function start(ref, size) {
+  if (isWeex) {
+    ref.width = size.width;
+    ref.height = size.height;
+  }
+
+  (0, _rawMaterialMain2.default)(_g3d2.default, {
+    canvas: ref,
+    requestAnimationFrame: setTimeout,
+    controlArcRotateCamera: _attachControl.controlArcRotateCamera
+  });
+}
+
+exports.default = {
+  data: function data() {
+    return {
+      isWeex: isWeex,
+      touchStart: _attachControl.touchStart,
+      touchMove: _attachControl.touchMove,
+      touchEnd: _attachControl.touchEnd
+    };
+  },
+
+
+  mounted: function mounted() {
+    var ref = this.$refs.canvas_holder;
+
+    var size = isWeex ? {
+      width: 750,
+      height: 750
+    } : {
+      width: parseInt(ref.style.width),
+      height: parseInt(ref.style.height)
+    };
+    if (!isWeex) {
+      ref.width = size.width;
+      ref.height = size.height;
+    }
+
+    if (isWeex) {
+      ref = enable(ref, { debug: true, bridge: WeexBridge });
+    }
+
+    start(ref, size);
+  }
+};
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

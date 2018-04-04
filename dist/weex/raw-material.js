@@ -62,7 +62,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 54);
+/******/ 	return __webpack_require__(__webpack_require__.s = 57);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -5952,17 +5952,20 @@ exports.default = main;
 /* 51 */,
 /* 52 */,
 /* 53 */,
-/* 54 */
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
 /* script */
-__vue_exports__ = __webpack_require__(55)
+__vue_exports__ = __webpack_require__(58)
 
 /* template */
-var __vue_template__ = __webpack_require__(56)
+var __vue_template__ = __webpack_require__(59)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -5974,7 +5977,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "/Users/huweijie/Documents/gcanvas_demo/src/tough-3d.vue"
+__vue_options__.__file = "/Users/huweijie/Documents/gcanvas_demo/src/weex/raw-material.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__.style = __vue_options__.style || {}
@@ -5993,7 +5996,7 @@ new Vue(module.exports)
 
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6028,11 +6031,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 
-var isWeex = typeof callNative === "function";
+var isWeex = weex.config.env.platform !== 'Web';
 
-var enable = __webpack_require__(1).enable;
-var GImage = __webpack_require__(1).Image;
-var WeexBridge = __webpack_require__(1).WeexBridge;
+var _require = __webpack_require__(1),
+    enable = _require.enable,
+    WeexBridge = _require.WeexBridge,
+    GImage = _require.Image;
 
 _g3d2.default.Env.Image = isWeex ? GImage : Image;
 _g3d2.default.Env.manuallyFlipY = isWeex;
@@ -6086,7 +6090,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

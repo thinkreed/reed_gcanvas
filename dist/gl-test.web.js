@@ -62,7 +62,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 51);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22133,7 +22133,8 @@ exports.default = GBridge;
 /* 29 */,
 /* 30 */,
 /* 31 */,
-/* 32 */
+/* 32 */,
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22404,7 +22405,6 @@ function compile(_ref) {
 exports.compile = compile;
 
 /***/ }),
-/* 33 */,
 /* 34 */,
 /* 35 */,
 /* 36 */,
@@ -22422,7 +22422,9 @@ exports.compile = compile;
 /* 48 */,
 /* 49 */,
 /* 50 */,
-/* 51 */
+/* 51 */,
+/* 52 */,
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22440,19 +22442,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _weexVueRender2.default.init(_vue2.default);
 
-var App = __webpack_require__(52);
+var App = __webpack_require__(54);
 new _vue2.default(_vue2.default.util.extend({ el: '#root' }, App));
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(53),
+  __webpack_require__(55),
   /* template */
-  __webpack_require__(54),
+  __webpack_require__(56),
   /* styles */
   null,
   /* scopeId */
@@ -22460,7 +22462,7 @@ var Component = __webpack_require__(11)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/oppo/source/reed_gcanvas/src/gl-test.vue"
+Component.options.__file = "/Users/huweijie/Documents/gcanvas_demo/src/gl-test.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] gl-test.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -22471,9 +22473,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a5ef06c0", Component.options)
+    hotAPI.createRecord("data-v-799900f1", Component.options)
   } else {
-    hotAPI.reload("data-v-a5ef06c0", Component.options)
+    hotAPI.reload("data-v-799900f1", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -22484,7 +22486,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22494,7 +22496,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _compileShader = __webpack_require__(32);
+var _compileShader = __webpack_require__(33);
 
 var dom = weex.requireModule('dom'); //
 //
@@ -22618,7 +22620,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -22649,7 +22651,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a5ef06c0", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-799900f1", module.exports)
   }
 }
 

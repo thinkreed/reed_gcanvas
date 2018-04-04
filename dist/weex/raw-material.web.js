@@ -62,7 +62,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 75);
+/******/ 	return __webpack_require__(__webpack_require__.s = 79);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22330,7 +22330,11 @@ exports.default = main;
 /* 72 */,
 /* 73 */,
 /* 74 */,
-/* 75 */
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22348,19 +22352,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _weexVueRender2.default.init(_vue2.default);
 
-var App = __webpack_require__(76);
+var App = __webpack_require__(80);
 new _vue2.default(_vue2.default.util.extend({ el: '#root' }, App));
 
 /***/ }),
-/* 76 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(77),
+  __webpack_require__(81),
   /* template */
-  __webpack_require__(78),
+  __webpack_require__(82),
   /* styles */
   null,
   /* scopeId */
@@ -22368,9 +22372,9 @@ var Component = __webpack_require__(11)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/huweijie/Documents/gcanvas_demo/src/tough-3d.vue"
+Component.options.__file = "/Users/huweijie/Documents/gcanvas_demo/src/weex/raw-material.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] tough-3d.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] raw-material.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -22379,9 +22383,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5e055bfc", Component.options)
+    hotAPI.createRecord("data-v-5e1e639e", Component.options)
   } else {
-    hotAPI.reload("data-v-5e055bfc", Component.options)
+    hotAPI.reload("data-v-5e1e639e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -22392,7 +22396,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 77 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22427,11 +22431,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 
-var isWeex = typeof callNative === "function";
+var isWeex = weex.config.env.platform !== 'Web';
 
-var enable = __webpack_require__(3).enable;
-var GImage = __webpack_require__(3).Image;
-var WeexBridge = __webpack_require__(3).WeexBridge;
+var _require = __webpack_require__(3),
+    enable = _require.enable,
+    WeexBridge = _require.WeexBridge,
+    GImage = _require.Image;
 
 _g3d2.default.Env.Image = isWeex ? GImage : Image;
 _g3d2.default.Env.manuallyFlipY = isWeex;
@@ -22485,7 +22490,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 78 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -22550,7 +22555,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5e055bfc", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5e1e639e", module.exports)
   }
 }
 
