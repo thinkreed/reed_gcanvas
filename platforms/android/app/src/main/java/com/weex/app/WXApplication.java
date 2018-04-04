@@ -2,7 +2,9 @@ package com.weex.app;
 
 import android.app.Application;
 
-import com.weex.app.extend.ImageAdapter;
+import com.taobao.gcanvas.adapters.img.impl.fresco.GCanvasFrescoImageLoader;
+import com.weex.app.extend.AudioGCanvasWeexModule;
+import com.weex.app.extend.FrescoImageAdapter;
 import com.weex.app.extend.WXEventModule;
 import com.alibaba.weex.plugin.loader.WeexPluginContainer;
 import com.weex.app.util.AppConfig;
@@ -20,11 +22,11 @@ public class WXApplication extends Application {
     WXSDKEngine.addCustomOptions("appName", "WXSample");
     WXSDKEngine.addCustomOptions("appGroup", "WXApp");
     WXSDKEngine.initialize(this,
-        new InitConfig.Builder().setImgAdapter(new ImageAdapter()).build()
+        new InitConfig.Builder().setImgAdapter(new FrescoImageAdapter()).build()
     );
     try {
       WXSDKEngine.registerModule("event", WXEventModule.class);
-      WXSDKEngine.registerModule("gcanvas", GCanvasWeexModule.class);
+      WXSDKEngine.registerModule("gcanvas", AudioGCanvasWeexModule.class);
       WXSDKEngine.registerComponent("gcanvas", WXGCanvasWeexComponent.class);
     } catch (WXException e) {
       e.printStackTrace();

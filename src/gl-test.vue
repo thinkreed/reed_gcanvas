@@ -5,14 +5,23 @@
   </div>
 </template>
 <script>
-  import { compile } from "./compile-shader";
-  const dom = weex.requireModule("dom");
-  const isWeex = weex.config.env.platform !== 'Web'
-  const { enable, WeexBridge, Image: GImage } = require('../gf/index.js');
-  const EnvImage = !isWeex ? Image : GImage;
+import {
+  compile
+} from './compile-shader'
+const dom = weex.requireModule('dom')
+const isWeex = weex.config.env.platform !== 'Web'
+const {
+  enable,
+  WeexBridge,
+  Image: GImage
+} = require('../gf/index.js')
+const EnvImage = !isWeex ? Image : GImage
 
-  function run(canvas, { requestAnimationFrame }) {
-    const fShader = `
+function run(canvas, {
+  requestAnimationFrame
+}) {
+  const fShader =
+    `
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -89,110 +98,113 @@ void main() {
 
     gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*color,1.);
 }
-`;
+`
 
-    runFragShader(canvas, fShader);
+  runFragShader(canvas, fShader)
 
-    function runFragShader(canvas, fShader) {
-      const vShader = `
+  function runFragShader(canvas, fShader) {
+    const vShader =
+      `
         attribute vec2 aPosition;
         void main() {
           gl_Position = vec4(aPosition, 0, 1);
-        }`;
+        }`
 
-      const gl = canvas.getContext("webgl");
-      gl.getExtension("OES_standard_derivatives");
+    const gl = canvas.getContext('webgl')
+    gl.getExtension('OES_standard_derivatives')
 
-      const {
-        attributes,
-        uniforms,
-        fillElements,
-        drawElements,
-        createElementsBuffer
-      } = compile({
+    const {
+      attributes,
+      uniforms,
+      fillElements,
+      drawElements,
+      createElementsBuffer
+    } = compile({
         vShader,
         fShader,
         gl
-      });
+      })
 
-      fillElements(createElementsBuffer([0, 1, 2]));
-      attributes.aPosition.fill(
-        attributes.aPosition.createBuffer([0, 3, 3, -3, -3, -3])
-      );
+    fillElements(createElementsBuffer([0, 1, 2]))
+    attributes.aPosition.fill(
+      attributes.aPosition.createBuffer([0, 3, 3, -3, -3, -3])
+    )
 
-      let offsetX = 0;
-      let offsetY = 0;
+    let offsetX = 0
+    let offsetY = 0
 
-      uniforms.uResolution &&
-        uniforms.uResolution.fill([canvas.width, canvas.height]);
+    uniforms.uResolution &&
+      uniforms.uResolution.fill([canvas.width, canvas.height])
 
-      let startTime;
-      function render() {
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        gl.clear(gl.COLOR_BUFFER_BIT);
+    let startTime
 
-        if (uniforms.uTime) {
-          if (!startTime) {
-            startTime = Date.now();
-          }
-          const uTime = ((Date.now() - startTime) / 1000) % 65532;
-          uniforms.uTime.fill([uTime]);
+    function render() {
+      gl.clearColor(0.0, 0.0, 0.0, 1.0)
+      gl.clear(gl.COLOR_BUFFER_BIT)
+
+      if (uniforms.uTime) {
+        if (!startTime) {
+          startTime = Date.now()
         }
-        if (uniforms.uMouse) {
-          uniforms.uMouse.fill([offsetX, offsetY]);
-        }
-
-        drawElements(3);
-
-        requestAnimationFrame(render);
+        const uTime = ((Date.now() - startTime) / 1000) % 65532
+        uniforms.uTime.fill([uTime])
       }
-      render();
+      if (uniforms.uMouse) {
+        uniforms.uMouse.fill([offsetX, offsetY])
+      }
+
+      drawElements(3)
+
+      requestAnimationFrame(render)
     }
+    render()
   }
-  export default {
-    data() {
-      return {
-        isWeex,
-        width: 750,
-        height: 1000
-      };
-    },
+}
+export default {
+  data() {
+    return {
+      isWeex,
+      width: 750,
+      height: 1000
+    }
+  },
 
-    mounted: function () {
+  mounted: function () {
+    const start = () => {
+      var ref = this.$refs.canvas_holder
 
-      const start = () => {
-
-        var ref = this.$refs.canvas_holder;
-
-        var size = isWeex
-          ? {
-            width: parseInt(this.width),
-            height: parseInt(this.height)
-          }
-          : {
-            width: parseInt(ref.style.width),
-            height: parseInt(ref.style.height)
-          };
-
-        if (isWeex) {
-          ref = enable(ref, { debug: true, bridge: WeexBridge });
+      var size = isWeex
+        ? {
+          width: parseInt(this.width),
+          height: parseInt(this.height)
+        }
+        : {
+          width: parseInt(ref.style.width),
+          height: parseInt(ref.style.height)
         }
 
-        ref.width = size.width;
-        ref.height = size.height;
+      if (isWeex) {
+        ref = enable(ref, {
+          debug: true,
+          bridge: WeexBridge
+        })
+      }
 
-        run(ref, {
-          requestAnimationFrame: isWeex ? setTimeout : requestAnimationFrame
-        });
-      };
+      ref.width = size.width
+      ref.height = size.height
 
-      dom.getComponentRect("viewport", e => {
-        this.height = e.size.height;
-
-        this.isReady = true;
-
-        setTimeout(start, 1000);
-      });
+      run(ref, {
+        requestAnimationFrame: isWeex ? setTimeout : requestAnimationFrame
+      })
     }
-  };
+
+    dom.getComponentRect('viewport', e => {
+      this.height = e.size.height
+
+      this.isReady = true
+
+      setTimeout(start, 1000)
+    })
+  }
+}
 </script>

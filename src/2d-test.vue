@@ -26,6 +26,15 @@
                 width: 750,
                 height: 750
             };
+            var imageLoaded = false;
+            var pattern = null;
+
+            var image = new EnvImage();
+            image.src = "https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D400/sign=4c77b70c2c2dd42a5f0900ab333a5b2f/a2cc7cd98d1001e9a25cf66ab10e7bec54e79777.jpg";
+            image.onload = function () {
+                imageLoaded = true;
+                pattern = ctx.createPattern(image, "repeat");
+            };
             function draw() {
                 const offsetX = ((Date.now() / 3000) % 1) * size.width * 0.8;
 
@@ -50,6 +59,18 @@
                 );
                 ctx.closePath();
                 ctx.fill();
+
+
+                //image
+                if (imageLoaded) {
+                    ctx.drawImage(
+                        image,
+                        offsetX,
+                        size.height * 0.8,
+                        size.height * 0.2,
+                        size.height * 0.2
+                    );
+                }
 
                 ctx.restore();
             }
