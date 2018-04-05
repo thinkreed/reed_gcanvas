@@ -62,7 +62,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 75);
+/******/ 	return __webpack_require__(__webpack_require__.s = 102);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22140,7 +22140,8 @@ exports.default = GBridge;
 
 /***/ }),
 /* 33 */,
-/* 34 */
+/* 34 */,
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22211,7 +22212,7 @@ exports.touchMove = touchMove;
 exports.touchEnd = touchEnd;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22291,7 +22292,6 @@ function main(G3D, _ref) {
 exports.default = main;
 
 /***/ }),
-/* 36 */,
 /* 37 */,
 /* 38 */,
 /* 39 */,
@@ -22330,7 +22330,34 @@ exports.default = main;
 /* 72 */,
 /* 73 */,
 /* 74 */,
-/* 75 */
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22348,19 +22375,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _weexVueRender2.default.init(_vue2.default);
 
-var App = __webpack_require__(76);
+var App = __webpack_require__(103);
 new _vue2.default(_vue2.default.util.extend({ el: '#root' }, App));
 
 /***/ }),
-/* 76 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(77),
+  __webpack_require__(104),
   /* template */
-  __webpack_require__(78),
+  __webpack_require__(105),
   /* styles */
   null,
   /* scopeId */
@@ -22392,7 +22419,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 77 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22406,9 +22433,9 @@ var _g3d = __webpack_require__(32);
 
 var _g3d2 = _interopRequireDefault(_g3d);
 
-var _attachControl = __webpack_require__(34);
+var _attachControl = __webpack_require__(35);
 
-var _rawMaterialMain = __webpack_require__(35);
+var _rawMaterialMain = __webpack_require__(36);
 
 var _rawMaterialMain2 = _interopRequireDefault(_rawMaterialMain);
 
@@ -22485,7 +22512,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 78 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
