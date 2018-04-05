@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <gcanvas v-if="isWeex" class="canvas" ref="canvas_holder" @touchstart="touchStart" @touchmove="touchMove" style="width:750;height:750"></gcanvas>
+  <div @touchstart="touchStart" @touchmove="touchMove">
+    <gcanvas v-if="isWeex" class="canvas" ref="canvas_holder" style="width:750;height:750"></gcanvas>
     <canvas v-if="!isWeex" ref="canvas_holder" style="width:750px;height:1000px;"></canvas>
   </div>
 </template>
@@ -30,7 +30,7 @@
       touchMove: function (e) {
         dx = e.changedTouches[0].screenX - lastX + dx
         dy = e.changedTouches[0].screenY - lastY + dy
-      }, 
+      },
       touchStart: function (e) {
         lastX = e.changedTouches[0].screenX
         lastY = e.changedTouches[0].screenY
@@ -49,7 +49,7 @@
         })
       }
       var ctx = ref.getContext('2d')
-      
+
       // Background image
       var bgReady = false;
       var bgImage = new EnvImage();
@@ -74,13 +74,22 @@
       };
       monsterImage.src = "file:///sdcard/Documents/img/monster.png";
 
+      var margin = 64
+      var cylinderRadius = 32
+      var leftBound = margin
+      var rightBound = ref.width - margin
+      var topBound = margin
+      var bottomBound = ref.width - margin
+
       // Game objects
       var hero = {
-        speed: 20 // movement in pixels per second
+        speed: 10 // movement in pixels per second
       };
-      var monster = {};
+      var monster = {
+        speed: 200
+      };
       var monstersCaught = 0;
-  
+
       // Reset the game when the player catches a monster
       var reset = function () {
         lastX = 0
@@ -91,23 +100,62 @@
         hero.y = ref.height / 2;
 
         // Throw the monster somewhere on the screen randomly
-        monster.x = 32 + (Math.random() * (ref.width - 64));
-        monster.y = 32 + (Math.random() * (ref.height - 64));
+        monster.x = cylinderRadius + (Math.random() * (ref.width - margin * 2));
+        monster.y = cylinderRadius + (Math.random() * (ref.height - margin * 2));
+        monster.dx = getRandom(-1, 1) * monster.speed / 60
+        monster.dy = getRandom(-1, 1) * monster.speed / 60
       };
+
+      var getRandom = function (minimum, maximum) {
+        var num
+        var maxEx = maximum + 2
+        do {
+          num = Math.random() * (maxEx - minimum) + minimum
+          num -= 1
+        } while (num < minimum || num > maximum)
+
+        return num
+      }
+
+      var renderHero = function (modifier) {
+        if ((leftBound < monster.x + monster.dx) && (rightBound > monster.x + monster.dx)) {
+          monster.x += monster.dx
+        } else {
+          monster.dx = getRandom(-1, 1) * monster.speed / 60
+        }
+        if ((topBound < monster.y + monster.dy) && (bottomBound > monster.y + monster.dy)) {
+          monster.y += monster.dy
+        } else {
+          monster.dy = getRandom(-1, 1) * monster.speed / 60
+        }
+      }
+
+      var renderMonster = function (modifier) {
+        var deltaX = dx / hero.speed * modifier
+        if ((leftBound < hero.x + deltaX) && (rightBound > hero.x + deltaX)) {
+          hero.x += deltaX
+        }
+        var deltaY = dy / hero.speed * modifier
+        if ((topBound < hero.y + deltaY) && (bottomBound > hero.y + deltaY)) {
+          hero.y += deltaY
+        }
+      }
 
       // Update game objects
       var update = function (modifier) {
-        hero.x += dx / hero.speed * modifier
-        hero.y += dy / hero.speed * modifier
+
+        renderMonster(modifier)
+        renderHero(modifier)
+
         dx = 0
         dy = 0
 
         // Are they touching?
         if (
-          hero.x <= (monster.x + 32) &&
-          monster.x <= (hero.x + 32) &&
-          hero.y <= (monster.y + 32) &&
-          monster.y <= (hero.y + 32)
+          hero.x <= (monster.x + cylinderRadius) &&
+          monster.x <= (hero.x + cylinderRadius) &&
+          hero.y <= (monster.y + cylinderRadius) &&
+          monster.y <= (hero.y + cylinderRadius)
         ) {
           ++monstersCaught;
           reset();
